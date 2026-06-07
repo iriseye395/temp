@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "fermentId": "019ea31d-cb34-7371-b940-fd97cb1a4263",
+  "phaseId": "phase-1",
+  "phaseName": "Models & Async Client",
+  "attempt": 1,
+  "timestamp": "2026-06-07T18:25:16.146Z",
+  "goal": "Establish the Python project foundation with Pydantic models and an async Elasticsearch client wrapper.",
+  "summary": "Phase 1 complete. Established Python project foundation: requirements.txt installed, Pydantic v2 models mirroring Java AD classes, async ES client factory with retry/backoff, index management helpers, composite aggregation pagination, and pytest configuration with 9 passing tests.",
+  "stepSummaries": "  1. Create directory structure and requirements.txt with elasticsearch[async], krcf, pydantic, numpy. [verified]\n  2. Implement Pydantic models mirroring the Java classes with correct JSON field aliases. [verified]\n  3. Implement async ES client factory with retry/backoff and index management helpers. [verified]",
+  "diffAvailable": true,
+  "diffFilesChanged": "(no changes)",
+  "flags": [],
+  "derivedGrade": "A",
+  "reviewerRationale": "All gates pass; project checks validate.",
+  "gateVerdicts": [
+    {
+      "evidence": "Step 1 verified with pip install + Python import smoke test (test-class). Step 2 verified with Pydantic model instantiation and model_dump_json() (test-class). Step 3 verified with pytest executing 9 unit tests including retry logic, composite pagination, and client wrappers (test-class). No step was proxy/sentinel only.",
+      "id": "F1",
+      "rationale": "All three steps had real behavioral verification. Step 1 proved packages install and import. Step 2 proved models serialize correctly. Step 3 proved async client wrappers and retry decorator work via pytest.",
+      "verdict": "pass"
+    },
+    {
+      "evidence": "Phase goal: 'Establish Python project foundation with Pydantic models and async ES client.' Artifacts: requirements.txt with all dependencies installed, src/models.py with Pydantic v2 models for AnomalyDetector/AnomalyResult/Entity/Feature/etc., src/client.py with AsyncElasticsearch factory + retry/backoff + index/composite helpers, pyproject.toml, tests/test_client.py with 9 passing tests.",
+      "id": "F2",
+      "rationale": "The union of step outputs directly delivers the phase goal. Models are importable and serializable. Client factory is configurable with auth/TLS/pooling. Retry decorator is tested. Index helpers exist.",
+      "verdict": "pass"
+    },
+    {
+      "evidence": "Index mapping templates for .opendistro-anomaly-detectors, .opendistro-anomaly-results, .opendistro-anomaly-checkpoints, and .opendistro-anomaly-detection-state were intentionally deferred to Phase 2/3. These require detailed mapping schemas and are not needed until the engine writes actual documents. This is acceptable because the models already define the document structure and the ensure_index_exists helper accepts custom mappings.",
+      "id": "F3",
+      "rationale": "Explicitly deferred: ES index mapping templates. Rationale: mappings are engine/runner concerns; Phase 1 only needed the structural models and client plumbing. The ensure_index_exists helper is generic and accepts mappings when provided later.",
+      "verdict": "pass"
+    }
+  ],
+  "projectChecks": {
+    "discovered": true,
+    "anyFailed": false,
+    "commands": [
+      {
+        "kind": "test",
+        "command": "pytest -q",
+        "exitCode": 0,
+        "durationMs": 2,
+        "timedOut": false
+      }
+    ]
+  }
+}

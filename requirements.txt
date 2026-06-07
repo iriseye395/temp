@@ -1,0 +1,25 @@
+# Async Elasticsearch client
+elasticsearch[async]>=8.15.0,<9.0.0
+
+# Python bindings for AWS Random Cut Forest (Rust backend)
+krcf>=0.1.0
+
+# Data validation and serialization
+pydantic>=2.0.0
+
+# Numerical computing
+numpy>=1.26.0
+scipy>=1.12.0
+
+# KLL quantile sketch (Apache Datasketches)
+datasketches>=5.0.0
+
+# Async HTTP tooling (often pulled in via elasticsearch, but explicit is fine)
+aiohttp>=3.9.0
+
+# --- Dev / Test ---
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+black>=24.0.0
+ruff>=0.4.0
+mypy>=1.10.0
