@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
@@ -315,13 +315,13 @@ def _add_interval(
 ) -> datetime:
     unit = interval.unit.lower()
     if unit in ("s", "sec", "secs", "second", "seconds"):
-        return dt.replace(second=dt.second + interval.interval)
+        return dt + timedelta(seconds=interval.interval)
     if unit in ("m", "min", "mins", "minute", "minutes"):
-        return dt.replace(minute=dt.minute + interval.interval)
+        return dt + timedelta(minutes=interval.interval)
     if unit in ("h", "hr", "hrs", "hour", "hours"):
-        return dt.replace(hour=dt.hour + interval.interval)
+        return dt + timedelta(hours=interval.interval)
     if unit in ("d", "day", "days"):
-        return dt.replace(day=dt.day + interval.interval)
+        return dt + timedelta(days=interval.interval)
     raise ValueError(f"Unsupported interval unit: {unit}")
 
 

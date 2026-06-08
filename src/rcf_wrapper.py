@@ -46,6 +46,8 @@ class AnomalyDescriptor:
     is_output_ready: bool = False
     is_imputed: bool = False
     is_anomaly: bool = False
+    actual: Optional[List[float]] = None
+    is_feature_imputed: Optional[List[bool]] = None
 
 
 class RCFModel:
